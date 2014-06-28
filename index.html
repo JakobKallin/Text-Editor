@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Text Editor</title>
+		<style>
+			html, body, textarea {
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				padding: 1em;
+			}
+		</style>
+		<script>
+			window.addEventListener('load', function() {
+				var editor = document.querySelector('textarea');
+				editor.value = localStorage.getItem('text') || '';
+				
+				window.addEventListener('beforeunload', save);
+				setTimeout(save, 1000);
+				
+				function save() {
+					localStorage.setItem('text', editor.value);
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<textarea></textarea>
+	</body>
+</html>
